@@ -7,17 +7,23 @@ export type ServiceType = "weekday" | "saturday" | "sunday_holiday";
 
 /**
  * Parse a time string like "7:30" or "14:15" into minutes since midnight.
+ * Returns NaN for invalid times (empty strings, "—" markers).
  */
 export function parseTime(time: string): number {
+  if (!time || !time.includes(":")) return NaN;
   const [hours, minutes] = time.split(":").map(Number);
+  if (isNaN(hours) || isNaN(minutes)) return NaN;
   return hours * 60 + minutes;
 }
 
 /**
  * Format a 24h time string (e.g. "14:30") for display (e.g. "2:30 PM").
+ * Returns "—" for invalid times.
  */
 export function formatTime(time: string): string {
+  if (!time || !time.includes(":")) return "—";
   const [hours, minutes] = time.split(":").map(Number);
+  if (isNaN(hours) || isNaN(minutes)) return "—";
   const period = hours >= 12 ? "PM" : "AM";
   const displayHours = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
   return `${displayHours}:${minutes.toString().padStart(2, "0")} ${period}`;
@@ -109,7 +115,7 @@ export function getScheduleForServiceType(
     stop: st.stop,
     times: st.times.filter((t) => {
       const mins = parseTime(t);
-      return mins >= startMin && mins <= endMin;
+      return !isNaN(mins) && mins >= startMin && mins <= endMin;
     }),
   }));
 

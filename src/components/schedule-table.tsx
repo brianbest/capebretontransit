@@ -49,15 +49,27 @@ function TimeGrid({
                 {st.stop}
               </div>
               <div className="flex flex-wrap gap-x-1.5 gap-y-1.5">
-                {st.times.map((time) => {
+                {st.times.map((time, timeIdx) => {
                   const mins = parseTime(time);
-                  const isPast = mins <= nowMinutes;
-                  const isNext = !isPast && !nextHighlighted;
+                  const isValid = !isNaN(mins);
+                  const isPast = isValid && mins <= nowMinutes;
+                  const isNext = isValid && !isPast && !nextHighlighted;
                   if (isNext) nextHighlighted = true;
+
+                  if (!isValid) {
+                    return (
+                      <span
+                        key={`${time}-${timeIdx}`}
+                        className="inline-block rounded bg-muted/30 px-1.5 py-0.5 text-xs font-mono tabular-nums text-muted-foreground/50"
+                      >
+                        —
+                      </span>
+                    );
+                  }
 
                   return (
                     <span
-                      key={time}
+                      key={`${time}-${timeIdx}`}
                       className={`inline-block rounded px-1.5 py-0.5 text-xs font-mono tabular-nums ${
                         isNext
                           ? 'bg-primary/20 font-semibold text-primary'
