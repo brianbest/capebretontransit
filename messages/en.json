@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "appName": "CB Transit",
+    "routes": "Routes",
+    "about": "About",
+    "language": "Language",
+    "home": "Home",
+    "schedules": "Schedules",
+    "alerts": "Alerts"
+  },
+  "home": {
+    "title": "Cape Breton Transit",
+    "subtitle": "Your guide to public transit in Cape Breton Regional Municipality",
+    "findRoute": "Find a Route",
+    "allRoutes": "View All Routes",
+    "holiday_notice": "Holiday schedules may differ. Check individual routes for details.",
+    "welcome": "Welcome to CB Transit",
+    "description": "Plan your trip across Cape Breton with real-time schedules and route information."
+  },
+  "route": {
+    "schedule": "Schedule",
+    "stops": "Stops",
+    "map": "Map",
+    "direction_to": "To {destination}",
+    "direction_from": "From {origin}",
+    "weekday": "Weekday",
+    "saturday": "Saturday",
+    "sunday_holiday": "Sunday & Holiday",
+    "no_service": "No Service",
+    "departure_times": "Departure Times",
+    "arriving_at": "Arriving at {stop}",
+    "route_number": "Route {number}",
+    "details": "Route Details",
+    "frequency": "Frequency",
+    "first_departure": "First Departure",
+    "last_departure": "Last Departure",
+    "travel_time": "Travel Time",
+    "minutes": "{count} min"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "back": "Back",
+    "search": "Search",
+    "filter": "Filter",
+    "close": "Close",
+    "open": "Open",
+    "next": "Next",
+    "previous": "Previous",
+    "select": "Select",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "no_results": "No results found",
+    "retry": "Try again"
+  },
+  "footer": {
+    "powered_by": "Powered by open transit data",
+    "data_source": "Data source: Cape Breton Regional Municipality",
+    "last_updated": "Last updated: {date}",
+    "copyright": "Cape Breton Transit",
+    "accessibility_statement": "Accessibility Statement",
+    "contact": "Contact Us"
+  },
+  "languages": {
+    "english": "English",
+    "french": "French",
+    "chinese": "Chinese",
+    "mikmaw": "Mi'kmaw"
+  },
+  "accessibility": {
+    "skip_to_content": "Skip to main content",
+    "open_menu": "Open menu",
+    "close_menu": "Close menu",
+    "select_language": "Select language",
+    "route_map": "Route map for {route}",
+    "schedule_table": "Schedule table for {route}",
+    "current_page": "Current page"
+  }
+}

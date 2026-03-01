@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "appName": "CB Transit",
+    "routes": "线路",
+    "about": "关于",
+    "language": "语言",
+    "home": "首页",
+    "schedules": "时刻表",
+    "alerts": "通知"
+  },
+  "home": {
+    "title": "布雷顿角公共交通",
+    "subtitle": "布雷顿角区域市政公共交通指南",
+    "findRoute": "查找线路",
+    "allRoutes": "查看所有线路",
+    "holiday_notice": "节假日时刻表可能有所不同，请查看各线路详情。",
+    "welcome": "欢迎使用 CB Transit",
+    "description": "通过实时时刻表和线路信息规划您在布雷顿角的出行。"
+  },
+  "route": {
+    "schedule": "时刻表",
+    "stops": "站点",
+    "map": "地图",
+    "direction_to": "开往{destination}",
+    "direction_from": "从{origin}出发",
+    "weekday": "工作日",
+    "saturday": "星期六",
+    "sunday_holiday": "星期日及节假日",
+    "no_service": "无服务",
+    "departure_times": "发车时间",
+    "arriving_at": "到达{stop}",
+    "route_number": "线路 {number}",
+    "details": "线路详情",
+    "frequency": "发车频率",
+    "first_departure": "首班车",
+    "last_departure": "末班车",
+    "travel_time": "行程时间",
+    "minutes": "{count} 分钟"
+  },
+  "common": {
+    "loading": "加载中...",
+    "error": "发生错误",
+    "back": "返回",
+    "search": "搜索",
+    "filter": "筛选",
+    "close": "关闭",
+    "open": "打开",
+    "next": "下一个",
+    "previous": "上一个",
+    "select": "选择",
+    "cancel": "取消",
+    "confirm": "确认",
+    "no_results": "未找到结果",
+    "retry": "重试"
+  },
+  "footer": {
+    "powered_by": "基于开放交通数据",
+    "data_source": "数据来源：布雷顿角区域市政",
+    "last_updated": "最后更新：{date}",
+    "copyright": "布雷顿角公共交通",
+    "accessibility_statement": "无障碍声明",
+    "contact": "联系我们"
+  },
+  "languages": {
+    "english": "英语",
+    "french": "法语",
+    "chinese": "中文",
+    "mikmaw": "米克马克语"
+  },
+  "accessibility": {
+    "skip_to_content": "跳到主要内容",
+    "open_menu": "打开菜单",
+    "close_menu": "关闭菜单",
+    "select_language": "选择语言",
+    "route_map": "{route}线路地图",
+    "schedule_table": "{route}时刻表",
+    "current_page": "当前页面"
+  }
+}

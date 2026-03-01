@@ -1,0 +1,80 @@
+{
+  "_comment": "Mi'kmaw translations. Known words are used where available. Terms marked [community review needed] should be verified with Mi'kmaw language speakers.",
+  "nav": {
+    "appName": "CB Transit",
+    "routes": "Owtikl",
+    "about": "Me' Tela'tekl",
+    "language": "Lnuisi'kw",
+    "home": "Wiku'om",
+    "schedules": "Teli-tepknatl",
+    "alerts": "Kinua'tuoqonl"
+  },
+  "home": {
+    "title": "Unama'ki Paqtnkewe'l",
+    "subtitle": "Kilu'lk paqtnkek Unama'kik iktuk",
+    "findRoute": "Kwilm Owtikl",
+    "allRoutes": "Ankaptmn Msit Owtikl",
+    "holiday_notice": "Amalkewimkewe'l na teli-tepknatl ketlamsitasikl. Ankaptmn owtikl.",
+    "welcome": "Kwe'j, CB Transit iktuk",
+    "description": "Ilankaptmn kipaqtnkeweyi'mk Unama'kik iktuk."
+  },
+  "route": {
+    "schedule": "Teli-tepknatl",
+    "stops": "Kaqamitl",
+    "map": "Sitkmu",
+    "direction_to": "{destination} iktuk",
+    "direction_from": "{origin} wjit",
+    "weekday": "Luskikuijk",
+    "saturday": "Ukjipunal'kuew",
+    "sunday_holiday": "Alame'wi-ku'si-kisikewiku'si-kisik",
+    "no_service": "Mu Paqtnkewewiw",
+    "departure_times": "Kisi-pekisinl",
+    "arriving_at": "Pekisin {stop} iktuk",
+    "route_number": "Owtikl {number}",
+    "details": "Owtikl Etli-ankamsitkl",
+    "frequency": "Teli-tla'tekl",
+    "first_departure": "Nekmewey Pekisinl",
+    "last_departure": "Kespi'skw Pekisinl",
+    "travel_time": "Paqtnkek Tepknatl",
+    "minutes": "{count} tepknuset"
+  },
+  "common": {
+    "loading": "Etliwisqtmk...",
+    "error": "Wet kisi-l'tasikw",
+    "back": "Apaji-kwe'jk",
+    "search": "Kwilmn",
+    "filter": "Newtipqatmn",
+    "close": "Aqapuqn",
+    "open": "Pantaqn",
+    "next": "Ap",
+    "previous": "Kespek",
+    "select": "Wawanimn",
+    "cancel": "Poqji-kina'masimk",
+    "confirm": "Tepknatmn",
+    "no_results": "Mu koqoe' wejkwatnuk",
+    "retry": "Ap ankweyilin"
+  },
+  "footer": {
+    "powered_by": "Pantato'q paqtnkek wikanl iktuk",
+    "data_source": "Wikann wjit: Unama'ki Muni'cipal",
+    "last_updated": "Kespukwi'tasik: {date}",
+    "copyright": "Unama'ki Paqtnkewe'l",
+    "accessibility_statement": "Etli-ankamsitkl Msit Wen",
+    "contact": "Kelu'lk"
+  },
+  "languages": {
+    "english": "Aklatiewe'wisimk",
+    "french": "Wenjuewe'wisimk",
+    "chinese": "Sai'newisimk",
+    "mikmaw": "L'nui'simk"
+  },
+  "accessibility": {
+    "skip_to_content": "Ewe'wmn wika'q iktuk",
+    "open_menu": "Pantaqn menuwey",
+    "close_menu": "Aqapuqn menuwey",
+    "select_language": "Wawanimn lnuisi'kw",
+    "route_map": "{route} sitkmu",
+    "schedule_table": "{route} teli-tepknatl",
+    "current_page": "Nutaql ankamkewey"
+  }
+}

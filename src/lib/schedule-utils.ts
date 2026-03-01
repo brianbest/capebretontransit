@@ -1,0 +1,242 @@
+// CB Transit - Schedule utility functions
+
+import { type Route, type Direction, type ScheduleTime } from "@/data/routes";
+import { holidayDates, holidayServiceHours, type HolidayDate, type ServiceLevel } from "@/data/holidays";
+
+export type ServiceType = "weekday" | "saturday" | "sunday_holiday";
+
+/**
+ * Parse a time string like "7:30" or "14:15" into minutes since midnight.
+ */
+export function parseTime(time: string): number {
+  const [hours, minutes] = time.split(":").map(Number);
+  return hours * 60 + minutes;
+}
+
+/**
+ * Format a 24h time string (e.g. "14:30") for display (e.g. "2:30 PM").
+ */
+export function formatTime(time: string): string {
+  const [hours, minutes] = time.split(":").map(Number);
+  const period = hours >= 12 ? "PM" : "AM";
+  const displayHours = hours === 0 ? 12 : hours > 12 ? hours - 12 : hours;
+  return `${displayHours}:${minutes.toString().padStart(2, "0")} ${period}`;
+}
+
+/**
+ * Format a date to an ISO date string (YYYY-MM-DD) in local timezone.
+ */
+function toLocalDateString(date: Date): string {
+  const year = date.getFullYear();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const day = date.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+/**
+ * Check if a given date is a transit holiday. Returns the holiday info or null.
+ */
+export function isHoliday(date: Date): HolidayDate | null {
+  const dateString = toLocalDateString(date);
+  return holidayDates.find((h) => h.date === dateString) ?? null;
+}
+
+/**
+ * Determine the service type for a given date.
+ * Checks holidays first, then falls back to day of week.
+ */
+export function getServiceType(date: Date): ServiceType {
+  const holiday = isHoliday(date);
+
+  if (holiday) {
+    const level: ServiceLevel = holiday.holiday.serviceLevel;
+    if (level === "no_service" || level === "sunday_schedule") {
+      return "sunday_holiday";
+    }
+    if (level === "reduced") {
+      return "sunday_holiday";
+    }
+  }
+
+  const day = date.getDay();
+  if (day === 0) return "sunday_holiday";
+  if (day === 6) return "saturday";
+  return "weekday";
+}
+
+/**
+ * Check whether service is running for a given date.
+ * Returns false on no-service holidays and Sundays (most routes have no Sunday service).
+ */
+export function isServiceRunning(date: Date): boolean {
+  const holiday = isHoliday(date);
+  if (holiday && holiday.holiday.serviceLevel === "no_service") {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * Get the schedule times for a direction based on the service type.
+ * For sunday_holiday, filters times within holiday service hours.
+ * Returns null if no service is available.
+ */
+export function getScheduleForServiceType(
+  direction: Direction,
+  serviceType: ServiceType,
+): ScheduleTime[] | null {
+  const schedule = direction.schedule;
+
+  if (serviceType === "weekday") {
+    return schedule.weekday;
+  }
+
+  if (serviceType === "saturday") {
+    return schedule.saturday;
+  }
+
+  // sunday_holiday: use sunday schedule if available, otherwise filter saturday
+  // to holiday service hours
+  if (schedule.sunday && schedule.sunday.length > 0) {
+    return schedule.sunday;
+  }
+
+  // Filter saturday schedule to holiday service hours (10 AM - 6 PM)
+  const startMin = parseTime(holidayServiceHours.start);
+  const endMin = parseTime(holidayServiceHours.end);
+
+  const filtered = schedule.saturday.map((st) => ({
+    stop: st.stop,
+    times: st.times.filter((t) => {
+      const mins = parseTime(t);
+      return mins >= startMin && mins <= endMin;
+    }),
+  }));
+
+  // If all stops have zero times after filtering, no service
+  if (filtered.every((st) => st.times.length === 0)) {
+    return null;
+  }
+
+  return filtered;
+}
+
+/**
+ * Find the next departure time from a specific stop in a direction.
+ * Returns the next time string, or null if no more departures today.
+ */
+export function getNextDeparture(
+  direction: Direction,
+  stopName: string,
+  date: Date = new Date(),
+): string | null {
+  if (!isServiceRunning(date)) {
+    return null;
+  }
+
+  const serviceType = getServiceType(date);
+  const scheduleTimes = getScheduleForServiceType(direction, serviceType);
+
+  if (!scheduleTimes) {
+    return null;
+  }
+
+  const stopSchedule = scheduleTimes.find((st) => st.stop === stopName);
+  if (!stopSchedule) {
+    return null;
+  }
+
+  const nowMinutes = date.getHours() * 60 + date.getMinutes();
+
+  for (const time of stopSchedule.times) {
+    if (parseTime(time) > nowMinutes) {
+      return time;
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Get the current service status for a route: the next departure from
+ * the first stop of its first direction.
+ */
+export function getCurrentService(
+  route: Route,
+  date: Date = new Date(),
+): { direction: Direction; nextDeparture: string } | null {
+  if (!isServiceRunning(date)) {
+    return null;
+  }
+
+  for (const direction of route.directions) {
+    const firstStop = direction.stops[0]?.name;
+    if (!firstStop) continue;
+
+    const next = getNextDeparture(direction, firstStop, date);
+    if (next) {
+      return { direction, nextDeparture: next };
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Get all upcoming departures from a stop across all routes.
+ */
+export function getUpcomingDeparturesFromStop(
+  routes: Route[],
+  stopName: string,
+  date: Date = new Date(),
+  limit: number = 5,
+): { route: Route; direction: Direction; time: string }[] {
+  const results: { route: Route; direction: Direction; time: string; minutes: number }[] = [];
+
+  if (!isServiceRunning(date)) {
+    return [];
+  }
+
+  const serviceType = getServiceType(date);
+  const nowMinutes = date.getHours() * 60 + date.getMinutes();
+
+  for (const route of routes) {
+    for (const direction of route.directions) {
+      const scheduleTimes = getScheduleForServiceType(direction, serviceType);
+      if (!scheduleTimes) continue;
+
+      const stopSchedule = scheduleTimes.find((st) => st.stop === stopName);
+      if (!stopSchedule) continue;
+
+      for (const time of stopSchedule.times) {
+        const mins = parseTime(time);
+        if (mins > nowMinutes) {
+          results.push({ route, direction, time, minutes: mins });
+        }
+      }
+    }
+  }
+
+  results.sort((a, b) => a.minutes - b.minutes);
+  return results.slice(0, limit).map(({ route, direction, time }) => ({ route, direction, time }));
+}
+
+/**
+ * Get all routes that serve a given stop.
+ */
+export function getRoutesForStop(
+  allRoutes: Route[],
+  stopName: string,
+): { route: Route; direction: Direction }[] {
+  const results: { route: Route; direction: Direction }[] = [];
+
+  for (const route of allRoutes) {
+    for (const direction of route.directions) {
+      if (direction.stops.some((s) => s.name === stopName)) {
+        results.push({ route, direction });
+      }
+    }
+  }
+
+  return results;
+}

@@ -1,0 +1,79 @@
+{
+  "nav": {
+    "appName": "CB Transit",
+    "routes": "Parcours",
+    "about": "À propos",
+    "language": "Langue",
+    "home": "Accueil",
+    "schedules": "Horaires",
+    "alerts": "Alertes"
+  },
+  "home": {
+    "title": "Transport en commun du Cap-Breton",
+    "subtitle": "Votre guide du transport en commun dans la municipalité régionale du Cap-Breton",
+    "findRoute": "Trouver un parcours",
+    "allRoutes": "Voir tous les parcours",
+    "holiday_notice": "Les horaires des jours fériés peuvent varier. Consultez chaque parcours pour les détails.",
+    "welcome": "Bienvenue à CB Transit",
+    "description": "Planifiez votre trajet à travers le Cap-Breton avec les horaires en temps réel et l'information sur les parcours."
+  },
+  "route": {
+    "schedule": "Horaire",
+    "stops": "Arrêts",
+    "map": "Carte",
+    "direction_to": "Vers {destination}",
+    "direction_from": "De {origin}",
+    "weekday": "Jour de semaine",
+    "saturday": "Samedi",
+    "sunday_holiday": "Dimanche et jour férié",
+    "no_service": "Aucun service",
+    "departure_times": "Heures de départ",
+    "arriving_at": "Arrivée à {stop}",
+    "route_number": "Parcours {number}",
+    "details": "Détails du parcours",
+    "frequency": "Fréquence",
+    "first_departure": "Premier départ",
+    "last_departure": "Dernier départ",
+    "travel_time": "Durée du trajet",
+    "minutes": "{count} min"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "back": "Retour",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "close": "Fermer",
+    "open": "Ouvrir",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "select": "Sélectionner",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "no_results": "Aucun résultat trouvé",
+    "retry": "Réessayer"
+  },
+  "footer": {
+    "powered_by": "Propulsé par des données ouvertes de transport",
+    "data_source": "Source des données : Municipalité régionale du Cap-Breton",
+    "last_updated": "Dernière mise à jour : {date}",
+    "copyright": "Transport en commun du Cap-Breton",
+    "accessibility_statement": "Déclaration d'accessibilité",
+    "contact": "Nous joindre"
+  },
+  "languages": {
+    "english": "Anglais",
+    "french": "Français",
+    "chinese": "Chinois",
+    "mikmaw": "Mi'kmaw"
+  },
+  "accessibility": {
+    "skip_to_content": "Passer au contenu principal",
+    "open_menu": "Ouvrir le menu",
+    "close_menu": "Fermer le menu",
+    "select_language": "Choisir la langue",
+    "route_map": "Carte du parcours {route}",
+    "schedule_table": "Tableau des horaires du parcours {route}",
+    "current_page": "Page actuelle"
+  }
+}
