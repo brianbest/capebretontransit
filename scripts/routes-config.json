@@ -1,0 +1,468 @@
+{
+  "1": {
+    "name": "Sydney to Glace Bay",
+    "nameKey": "route.1.name",
+    "description": "Service between Sydney Terminal and Glace Bay via Reserve Mines and Dominion",
+    "descriptionKey": "route.1.description",
+    "color": "#2563EB",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2001%20Vehicles;Zone%20Boundaries;Route%2001B%20-%20Sydney%20to%20Glace%20Bay%20Stops;Route%2001B%20-%20Sydney%20to%20Glace%20Bay;Route%2001A%20-%20Glace%20Bay%20to%20Sydney%20Stops;Route%2001A%20-%20Glace%20Bay%20to%20Sydney&center=-60.090,46.174&level=12",
+    "directions": [
+      {
+        "id": "1-outbound",
+        "name": "Sydney to Glace Bay",
+        "nameKey": "route.1.direction.outbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-1-Schedule-Sydney-to-Glace-Bay.pdf",
+        "filename": "route-1-outbound.pdf",
+        "stops": [
+          "Pitt St./George St.",
+          "Ashby Corner",
+          "SPAR Road/Walmart",
+          "Mayflower Mall",
+          "C.B.U.",
+          "Reserve/TIM Hortons",
+          "Dominion/TIM Hortons",
+          "Station St/Main St",
+          "Marconi St/Commercial St"
+        ]
+      },
+      {
+        "id": "1-inbound",
+        "name": "Glace Bay to Sydney",
+        "nameKey": "route.1.direction.inbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-1-Schedule-Glace-Bay-to-Sydney.pdf",
+        "filename": "route-1-inbound.pdf",
+        "stops": [
+          "Marconi St/Commercial St",
+          "Station St/Main St",
+          "Dominion/TIM Hortons",
+          "Reserve/TIM Hortons",
+          "C.B.U.",
+          "Mayflower Mall",
+          "SPAR Road/Walmart",
+          "Ashby Corner",
+          "Pitt St./George St."
+        ]
+      }
+    ]
+  },
+  "2": {
+    "name": "Sydney to Glace Bay Express",
+    "nameKey": "route.2.name",
+    "description": "Express service between Sydney Terminal and Glace Bay with limited stops",
+    "descriptionKey": "route.2.description",
+    "color": "#1D4ED8",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2002%20Vehicles;Zone%20Boundaries;Route%2002B%20-%20Sydney%20to%20Glace%20Bay%20Stops;Route%2002B%20-%20Sydney%20to%20Glace%20Bay;Route%2002A%20-%20Glace%20Bay%20to%20Sydney%20Stops;Route%2002A%20-%20Glace%20Bay%20to%20Sydney&center=-60.086,46.168&level=12",
+    "directions": [
+      {
+        "id": "2-outbound",
+        "name": "Sydney to Glace Bay Express",
+        "nameKey": "route.2.direction.outbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-2-Schedule-Sydney-to-Glace-Bay-Express.pdf",
+        "filename": "route-2-outbound.pdf",
+        "stops": [
+          "Pitt St./George St.",
+          "Ashby Corner",
+          "Walmart",
+          "Mayflower Mall",
+          "C.B.U.",
+          "Reserve Mines/TIM Hortons",
+          "Phalens Rd/Reserve St",
+          "Marconi St/Commercial St"
+        ]
+      },
+      {
+        "id": "2-inbound",
+        "name": "Glace Bay to Sydney Express",
+        "nameKey": "route.2.direction.inbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-2-Schedule-Glace-Bay-to-Sydney-Express.pdf",
+        "filename": "route-2-inbound.pdf",
+        "stops": [
+          "Marconi St/Commercial St",
+          "Phalens Rd/Reserve St",
+          "Reserve Mines/TIM Hortons",
+          "C.B.U.",
+          "Mayflower Mall",
+          "Walmart",
+          "Ashby Corner",
+          "Pitt St./George St."
+        ]
+      }
+    ]
+  },
+  "3": {
+    "name": "New Aberdeen",
+    "nameKey": "route.3.name",
+    "description": "Loop service through New Aberdeen area",
+    "descriptionKey": "route.3.description",
+    "color": "#059669",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2003%20Vehicles;Route%2003%20Stops;Route%2003&center=-59.972,46.206&level=13",
+    "directions": [
+      {
+        "id": "3-loop",
+        "name": "New Aberdeen Loop",
+        "nameKey": "route.3.direction.loop",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2025/11/Route-3-Schedule.pdf",
+        "filename": "route-3-loop.pdf",
+        "stops": [
+          "Marconi St/Commercial St",
+          "First Street",
+          "Connaught Avenue",
+          "Station Street",
+          "Marconi St/Commercial St"
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  },
+  "4": {
+    "name": "Steele's Hill",
+    "nameKey": "route.4.name",
+    "description": "Loop service through Steele's Hill and surrounding area",
+    "descriptionKey": "route.4.description",
+    "color": "#0891B2",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2004%20Vehicles;Route%2004%20Stops;Route%2004&center=-59.958,46.185&level=13",
+    "directions": [
+      {
+        "id": "4-loop",
+        "name": "Steele's Hill Loop",
+        "nameKey": "route.4.direction.loop",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2025/11/Route-4-Schedule.pdf",
+        "filename": "route-4-loop.pdf",
+        "stops": [
+          "Marconi Street",
+          "Brookside Street",
+          "Steele's Hill",
+          "General Hospital",
+          "Commercial Street"
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  },
+  "5": {
+    "name": "Sydney to Sydney Mines",
+    "nameKey": "route.5.name",
+    "description": "Service between Sydney Terminal and Sydney Mines via North Sydney",
+    "descriptionKey": "route.5.description",
+    "color": "#7C3AED",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2005%20Vehicles;Zone%20Boundaries;Route%2005B%20-%20Sydney%20to%20Sydney%20Mines%20Stops;Route%2005B%20-%20Sydney%20to%20Sydney%20Mines;Route%2005A%20-%20Sydney%20Mines%20to%20Sydney%20Stops;Route%2005A%20-%20Sydney%20Mines%20to%20Sydney&center=-60.183,46.173&level=11",
+    "directions": [
+      {
+        "id": "5-outbound",
+        "name": "Sydney to Sydney Mines",
+        "nameKey": "route.5.direction.outbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-5-Schedule-Sydney-to-Sydney-Mines.pdf",
+        "filename": "route-5-outbound.pdf",
+        "stops": [
+          "Pitt St./George St.",
+          "Cabot House/Sydney River",
+          "Sydney River Mall",
+          "Northside Mall",
+          "Northside Commercial St.",
+          "Northside Hospital",
+          "Sydney Mines/Main Street",
+          "Sydney Mines/Pit Street"
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      },
+      {
+        "id": "5-inbound",
+        "name": "Sydney Mines to Sydney",
+        "nameKey": "route.5.direction.inbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-5-Schedule-Sydney-Mines-to-Sydney.pdf",
+        "filename": "route-5-inbound.pdf",
+        "stops": [
+          "Sydney Mines/Pit Street",
+          "Sydney Mines/Main Street",
+          "Northside Hospital",
+          "Prince St./Archibald St.",
+          "Northside Mall",
+          "Sydney River Mall",
+          "Cabot House/Sydney River",
+          "Pitt St./George St."
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  },
+  "6": {
+    "name": "Westmount",
+    "nameKey": "route.6.name",
+    "description": "Loop service through Westmount area of Sydney",
+    "descriptionKey": "route.6.description",
+    "color": "#0D9488",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2006%20Vehicles;Zone%20Boundaries;Route%2006%20-%20Westmount%20Stops;Route%2006%20-%20Westmount%20&center=-60.2160,46.130&level=13",
+    "directions": [
+      {
+        "id": "6-loop",
+        "name": "Westmount Loop",
+        "nameKey": "route.6.direction.loop",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-6-Schedule.pdf",
+        "filename": "route-6-loop.pdf",
+        "stops": [
+          "Sydney River Mall",
+          "Kennys/Coxheath Rd",
+          "Crescent/Sydport/Golf Entrance",
+          "Westmount Rd/Murphy Rd",
+          "Sydney River Mall"
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  },
+  "7": {
+    "name": "Howie Centre",
+    "nameKey": "route.7.name",
+    "description": "Loop service through Howie Centre and surrounding area",
+    "descriptionKey": "route.7.description",
+    "color": "#D97706",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2007%20Vehicles;Zone%20Boundaries;Route%2007%20-%20Howie%20Center%20Stops;Route%2007%20-%20Howie%20Center%20&center=-60.246,46.090&level=13",
+    "directions": [
+      {
+        "id": "7-loop",
+        "name": "Howie Centre Loop",
+        "nameKey": "route.7.direction.loop",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2025/11/Route-7-Schedule.pdf",
+        "filename": "route-7-loop.pdf",
+        "stops": [
+          "Sydney River Mall",
+          "Kings Rd/Irving Circle K",
+          "Howie Centre Drive",
+          "Hampton/Prior Estates",
+          "Sydney River Mall"
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  },
+  "8": {
+    "name": "Whitney Pier",
+    "nameKey": "route.8.name",
+    "description": "Loop service through Whitney Pier area of Sydney",
+    "descriptionKey": "route.8.description",
+    "color": "#DC2626",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2008%20Vehicles;Route%2008%20Stops;Route%2008&center=-60.183,46.155&level=13",
+    "directions": [
+      {
+        "id": "8-loop",
+        "name": "Whitney Pier Loop",
+        "nameKey": "route.8.direction.loop",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2025/11/Route-8-Schedule.pdf",
+        "filename": "route-8-loop.pdf",
+        "stops": [
+          "Pitt St./George St.",
+          "Ashby Corner",
+          "Pine Tree Park",
+          "Broadway Street",
+          "Henry Street",
+          "Ashby Corner",
+          "High/Townsend",
+          "Pitt St./George St."
+        ]
+      }
+    ]
+  },
+  "9": {
+    "name": "Sydney to New Waterford",
+    "nameKey": "route.9.name",
+    "description": "Service between Sydney Terminal and New Waterford via Scotchtown",
+    "descriptionKey": "route.9.description",
+    "color": "#EA580C",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2009%20Vehicles;Zone%20Boundaries;Route%2009B%20-%20Sydney%20to%20New%20Waterford%20Stops;Route%2009B%20-%20Sydney%20to%20New%20Waterford;Route%2009A%20-%20New%20Waterford%20to%20Sydney%20Stops;Route%2009A%20-%20New%20Waterford%20to%20Sydney&center=-60.183,46.184&level=11",
+    "directions": [
+      {
+        "id": "9-outbound",
+        "name": "Sydney to New Waterford",
+        "nameKey": "route.9.direction.outbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-9-Schedule-Sydney-to-New-Waterford.pdf",
+        "filename": "route-9-outbound.pdf",
+        "stops": [
+          "Pitt St./George St.",
+          "Ashby Corner",
+          "Walmart",
+          "Mayflower Mall",
+          "C.B.U.",
+          "Plummer Ave",
+          "Daley Road"
+        ],
+        "num_stops_override": 7,
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      },
+      {
+        "id": "9-inbound",
+        "name": "New Waterford to Sydney",
+        "nameKey": "route.9.direction.inbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-9-Schedule-New-Waterford-to-Sydney.pdf",
+        "filename": "route-9-inbound.pdf",
+        "stops": [
+          "Daley Road",
+          "Plummer Ave",
+          "C.B.U.",
+          "Mayflower Mall",
+          "Walmart",
+          "Ashby Corner",
+          "Pitt St./George St."
+        ],
+        "num_stops_override": 7,
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  },
+  "10": {
+    "name": "Alexandra Street",
+    "nameKey": "route.10.name",
+    "description": "Loop service through Alexandra Street and surrounding area",
+    "descriptionKey": "route.10.description",
+    "color": "#DB2777",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2010%20Vehicles;Route%2010%20Stops;Route%2010&center=-60.188,46.125&level=13",
+    "directions": [
+      {
+        "id": "10-loop",
+        "name": "Alexandra Street Loop",
+        "nameKey": "route.10.direction.loop",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2025/11/Route-10-Schedule.pdf",
+        "filename": "route-10-loop.pdf",
+        "stops": [
+          "Pitt St./George St.",
+          "Alexandra/Churchill Drive",
+          "Rockway/Alexandra",
+          "Kings Road/Churchill Dr.",
+          "Pitt St./George St."
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  },
+  "11": {
+    "name": "Ashby",
+    "nameKey": "route.11.name",
+    "description": "Loop service through Ashby area of Sydney",
+    "descriptionKey": "route.11.description",
+    "color": "#4F46E5",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2011%20Vehicles;Route%2011%20Stops;Route%2011&center=-60.173,46.139&level=14",
+    "directions": [
+      {
+        "id": "11-loop",
+        "name": "Ashby Loop",
+        "nameKey": "route.11.direction.loop",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2025/11/Route-11-Schedule.pdf",
+        "filename": "route-11-loop.pdf",
+        "stops": [
+          "Pitt St./George St.",
+          "Brookland Street",
+          "Ashby Corner",
+          "Welton/Reeves",
+          "Whitney Ave./Terrace St.",
+          "Pitt St./George St."
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  },
+  "12": {
+    "name": "Sydney - Membertou - Sydney River",
+    "nameKey": "route.12.name",
+    "description": "Service between Sydney Terminal, Membertou, and Sydney River",
+    "descriptionKey": "route.12.description",
+    "color": "#65A30D",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2012%20Vehicles;Zone%20Boundaries;Route%2012B%20-%20Sydney%20to%20Sydney%20River%20Stops;Route%2012B%20-%20Sydney%20to%20Sydney%20River%20;Route%2012A%20-%20Sydney%20River%20to%20Sydney%20Stops;Route%2012A%20-%20Sydney%20River%20to%20Sydney%20&center=-60.226,46.122&level=13",
+    "directions": [
+      {
+        "id": "12-outbound",
+        "name": "Sydney to Membertou to Sydney River",
+        "nameKey": "route.12.direction.outbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-12-Sydney-to-Membertou-to-Sydney-River.pdf",
+        "filename": "route-12-outbound.pdf",
+        "stops": [
+          "Pitt St./George St.",
+          "Membertou Trade & Convention",
+          "Seventh Exchange",
+          "Membertou Band Office",
+          "Cabot House",
+          "Sydney River"
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      },
+      {
+        "id": "12-inbound",
+        "name": "Sydney River to Membertou to Sydney",
+        "nameKey": "route.12.direction.inbound",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2026/02/Route-12-Sydney-River-to-Membertou-to-Sydney.pdf",
+        "filename": "route-12-inbound.pdf",
+        "stops": [
+          "Sydney River",
+          "Cabot House",
+          "Membertou Band Office",
+          "Seventh Exchange",
+          "Membertou Trade & Convention",
+          "Pitt St./George St."
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  },
+  "13": {
+    "name": "George Street",
+    "nameKey": "route.13.name",
+    "description": "Loop service through George Street area of Sydney",
+    "descriptionKey": "route.13.description",
+    "color": "#0EA5E9",
+    "mapUrl": "https://gis2.cbrm.ns.ca/portal/apps/webappviewer/index.html?id=24cf18d38a704c19b1f6c2bfbae4f04a&showLayers=Route%2013%20Vehicles;Zone%20Boundaries;Route%2013%20Stops;Route%2013&center=-60.173,46.125&level=13",
+    "directions": [
+      {
+        "id": "13-loop",
+        "name": "George Street Loop",
+        "nameKey": "route.13.direction.loop",
+        "pdf_url": "https://cbrm.ns.ca/wp-content/uploads/2025/11/Route-13-Schedule.pdf",
+        "filename": "route-13-loop.pdf",
+        "stops": [
+          "Pitt St./George St.",
+          "George St./Rotary Dr.",
+          "Regional Hospital",
+          "Brookland School",
+          "Pitt St./George St."
+        ],
+        "pages": {
+          "0": "weekday",
+          "1": "saturday"
+        }
+      }
+    ]
+  }
+}

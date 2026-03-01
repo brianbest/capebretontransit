@@ -19,7 +19,7 @@ export default function Home() {
 
       <ServiceAlert />
 
-      <div className="mt-4 space-y-2">
+      <div className="mt-4 space-y-3">
         {routes.map((route) => (
           <RouteCard key={route.id} route={route} />
         ))}

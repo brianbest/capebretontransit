@@ -2,7 +2,6 @@
 
 import {useTranslations} from 'next-intl';
 import {Tabs, TabsList, TabsTrigger, TabsContent} from '@/components/ui/tabs';
-import {ScrollArea, ScrollBar} from '@/components/ui/scroll-area';
 import {type Direction} from '@/data/routes';
 import {
   getScheduleForServiceType,
@@ -37,49 +36,46 @@ function TimeGrid({
   const nowMinutes = now.getHours() * 60 + now.getMinutes();
 
   return (
-    <ScrollArea className="w-full">
-      <div className="min-w-[480px]">
-        <div className="grid gap-0">
-          {scheduleTimes.map((st) => {
-            let nextHighlighted = false;
-            return (
-              <div
-                key={st.stop}
-                className="grid grid-cols-[140px_1fr] border-b border-border/30 last:border-0"
-              >
-                <div className="flex items-start px-3 py-2.5 text-xs font-medium text-muted-foreground">
-                  {st.stop}
-                </div>
-                <div className="flex flex-wrap gap-x-1 gap-y-1 px-2 py-2.5">
-                  {st.times.map((time) => {
-                    const mins = parseTime(time);
-                    const isPast = mins <= nowMinutes;
-                    const isNext = !isPast && !nextHighlighted;
-                    if (isNext) nextHighlighted = true;
-
-                    return (
-                      <span
-                        key={time}
-                        className={`inline-block rounded px-1.5 py-0.5 text-xs font-mono tabular-nums ${
-                          isNext
-                            ? 'bg-primary/20 font-semibold text-primary'
-                            : isPast
-                              ? 'text-muted-foreground/40'
-                              : 'text-foreground/80'
-                        }`}
-                      >
-                        {formatTime(time)}
-                      </span>
-                    );
-                  })}
-                </div>
+    <div className="w-full">
+      <div className="grid gap-0">
+        {scheduleTimes.map((st, idx) => {
+          let nextHighlighted = false;
+          return (
+            <div
+              key={`${st.stop}-${idx}`}
+              className="flex flex-col border-b border-border/30 px-3 py-3 last:border-0 sm:grid sm:grid-cols-[160px_1fr]"
+            >
+              <div className="mb-1.5 text-sm font-medium text-muted-foreground sm:mb-0 sm:flex sm:items-start sm:py-0">
+                {st.stop}
               </div>
-            );
-          })}
-        </div>
+              <div className="flex flex-wrap gap-x-1.5 gap-y-1.5">
+                {st.times.map((time) => {
+                  const mins = parseTime(time);
+                  const isPast = mins <= nowMinutes;
+                  const isNext = !isPast && !nextHighlighted;
+                  if (isNext) nextHighlighted = true;
+
+                  return (
+                    <span
+                      key={time}
+                      className={`inline-block rounded px-1.5 py-0.5 text-xs font-mono tabular-nums ${
+                        isNext
+                          ? 'bg-primary/20 font-semibold text-primary'
+                          : isPast
+                            ? 'bg-muted/50 text-muted-foreground/70 line-through'
+                            : 'bg-muted/50 text-foreground'
+                      }`}
+                    >
+                      {formatTime(time)}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
       </div>
-      <ScrollBar orientation="horizontal" />
-    </ScrollArea>
+    </div>
   );
 }
 

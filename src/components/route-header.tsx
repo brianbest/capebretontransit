@@ -45,7 +45,7 @@ export function RouteHeader({route, directionIndex, onDirectionChange}: RouteHea
       </div>
 
       {hasMultipleDirections && (
-        <div className="flex gap-1.5">
+        <div className="flex flex-wrap gap-2">
           {route.directions.map((dir, i) => (
             <Button
               key={dir.id}

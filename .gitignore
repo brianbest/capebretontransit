@@ -39,3 +39,10 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# downloaded PDFs (re-download with scripts/download-pdfs.sh)
+scripts/pdfs/
+pdfs/
+
+# extracted schedule data (regenerate with scripts/parse-schedules.py)
+scripts/extracted-schedules.json

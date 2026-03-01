@@ -16,20 +16,20 @@ export function RouteDetailClient({route}: RouteDetailClientProps) {
   const direction = route.directions[directionIndex];
 
   return (
-    <div className="mx-auto max-w-3xl px-4 py-6">
+    <div className="mx-auto max-w-3xl px-4 py-6 pb-10">
       <RouteHeader
         route={route}
         directionIndex={directionIndex}
         onDirectionChange={setDirectionIndex}
       />
 
-      <section className="mt-6">
+      <section className="mt-8">
         <h2 className="mb-3 text-sm font-medium uppercase tracking-wide text-muted-foreground">
           {t('stops')}
         </h2>
         <div className="space-y-0">
           {direction?.stops.map((stop, i) => (
-            <div key={`${stop.name}-${i}`} className="flex items-center gap-3 py-1.5">
+            <div key={`${stop.name}-${i}`} className="flex items-center gap-3 py-2">
               <div className="relative flex flex-col items-center">
                 <div
                   className="size-2.5 rounded-full ring-2 ring-background"
@@ -48,7 +48,7 @@ export function RouteDetailClient({route}: RouteDetailClientProps) {
         </div>
       </section>
 
-      <section className="mt-8">
+      <section className="mt-10">
         <h2 className="mb-3 text-sm font-medium uppercase tracking-wide text-muted-foreground">
           {t('departure_times')}
         </h2>

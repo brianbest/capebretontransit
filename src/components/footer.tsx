@@ -9,7 +9,7 @@ export function Footer() {
         <p className="text-center text-xs text-muted-foreground">
           {t('data_source')}
         </p>
-        <p className="mt-1 text-center text-xs text-muted-foreground/60">
+        <p className="mt-1 text-center text-xs text-muted-foreground/80">
           {t('copyright')}
         </p>
       </div>
