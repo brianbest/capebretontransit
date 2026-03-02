@@ -40,7 +40,9 @@
     "next_arrival": "Prochain",
     "service_ended": "Service terminé pour aujourd'hui",
     "more_stops": "+{count} arrêts",
-    "fewer_stops": "Voir moins"
+    "fewer_stops": "Voir moins",
+    "in_transit": "En route",
+    "final_run": "Dernier trajet"
   },
   "common": {
     "loading": "Chargement...",

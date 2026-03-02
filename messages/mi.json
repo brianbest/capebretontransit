@@ -41,7 +41,9 @@
     "next_arrival": "Ap Pekisinl",
     "service_ended": "Paqtnkek kisi-keskuk",
     "more_stops": "+{count} kaqamitl",
-    "fewer_stops": "Ankaptmn newtiskl"
+    "fewer_stops": "Ankaptmn newtiskl",
+    "in_transit": "Etli-paqtnkek",
+    "final_run": "Kespi'skw Paqtnkek"
   },
   "common": {
     "loading": "Etliwisqtmk...",

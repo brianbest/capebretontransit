@@ -40,7 +40,9 @@
     "next_arrival": "下一班",
     "service_ended": "今日服务已结束",
     "more_stops": "还有{count}个站点",
-    "fewer_stops": "收起"
+    "fewer_stops": "收起",
+    "in_transit": "运行中",
+    "final_run": "末班车"
   },
   "common": {
     "loading": "加载中...",

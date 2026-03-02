@@ -9,10 +9,12 @@ import {type Route} from '@/data/routes';
 import {
   getStopSurroundingTimes,
   getActiveDirection,
+  getLastRunStatus,
   getServiceType,
   isServiceRunning,
   formatTime,
   type StopTimeContext,
+  type LastRunStop,
 } from '@/lib/schedule-utils';
 
 interface RouteWidgetProps {
@@ -56,6 +58,60 @@ function StopRow({ctx, isFirst}: {ctx: StopTimeContext; isFirst: boolean}) {
   );
 }
 
+function LastRunStopRow({
+  stop,
+  isCurrent,
+  isUpcoming,
+  routeColor,
+}: {
+  stop: LastRunStop;
+  isCurrent: boolean;
+  isUpcoming: boolean;
+  routeColor: string;
+}) {
+  return (
+    <div className="grid grid-cols-[auto_1fr_auto] items-center gap-x-2.5 py-1">
+      {/* Progress dot */}
+      <div className="flex size-4 items-center justify-center">
+        {isCurrent ? (
+          <span
+            className="block size-2.5 animate-pulse rounded-full ring-2 ring-offset-1 ring-offset-background"
+            style={{backgroundColor: routeColor, boxShadow: `0 0 6px ${routeColor}80`, borderColor: routeColor}}
+          />
+        ) : (
+          <span
+            className={`block size-1.5 rounded-full ${
+              isUpcoming ? 'bg-muted-foreground/30' : 'bg-muted-foreground/20'
+            }`}
+          />
+        )}
+      </div>
+      <span
+        className={`truncate text-xs ${
+          isCurrent
+            ? 'font-medium text-foreground'
+            : isUpcoming
+              ? 'text-muted-foreground'
+              : 'text-muted-foreground/50'
+        }`}
+      >
+        {stop.stop}
+      </span>
+      <span
+        className={`text-xs tabular-nums ${
+          isCurrent
+            ? 'font-medium text-foreground'
+            : isUpcoming
+              ? 'text-muted-foreground'
+              : 'text-muted-foreground/50 line-through'
+        }`}
+      >
+        {formatTime(stop.time)}
+      </span>
+    </div>
+  );
+}
+
 export function RouteWidget({route}: RouteWidgetProps) {
   const t = useTranslations('route');
   const [expanded, setExpanded] = useState(false);
@@ -66,6 +122,7 @@ export function RouteWidget({route}: RouteWidgetProps) {
   const {direction} = getActiveDirection(route, now);
   const stopTimes = serviceRunning ? getStopSurroundingTimes(direction, now) : null;
   const hasUpcoming = stopTimes?.some((s) => s.nextDeparture !== null) ?? false;
+  const lastRun = !hasUpcoming && serviceRunning ? getLastRunStatus(direction, now) : null;
 
   const firstStop = direction.stops[0]?.name;
   const lastStop = direction.stops[direction.stops.length - 1]?.name;
@@ -100,6 +157,14 @@ export function RouteWidget({route}: RouteWidgetProps) {
               <span className="shrink-0 rounded bg-muted/60 px-1.5 py-0.5 text-[10px] font-medium text-muted-foreground">
                 {serviceLabel}
               </span>
+              {lastRun && (
+                <span
+                  className="shrink-0 rounded px-1.5 py-0.5 text-[10px] font-semibold text-white"
+                  style={{backgroundColor: route.color}}
+                >
+                  {t('in_transit')}
+                </span>
+              )}
             </div>
             <div className="mt-0.5 text-xs text-muted-foreground/70">
               {isLoop ? direction.name : `${firstStop} \u2192 ${lastStop}`}
@@ -108,10 +173,9 @@ export function RouteWidget({route}: RouteWidgetProps) {
           <ChevronRight className="size-4 shrink-0 text-muted-foreground/40 transition-transform group-hover:translate-x-0.5" />
         </div>
 
-        {/* Schedule body */}
+        {/* Normal schedule body */}
         {serviceRunning && stopTimes && hasUpcoming ? (
           <div className="border-t border-border/30 px-4 pt-1.5 pb-2">
-            {/* Column headers */}
             <div className="grid grid-cols-[1fr_auto_auto] items-center gap-x-3 pb-1">
               <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground/50">
                 {t('stops')}
@@ -152,14 +216,28 @@ export function RouteWidget({route}: RouteWidgetProps) {
               </button>
             )}
           </div>
+        ) : lastRun ? (
+          /* Last run in-transit view */
+          <div className="border-t border-border/30 px-4 pt-1 pb-2">
+            <div className="mb-1 flex items-center gap-1.5 py-1">
+              <span className="text-[10px] font-medium uppercase tracking-wider text-muted-foreground/50">
+                {t('final_run')}
+              </span>
+            </div>
+            {lastRun.stops.map((stop, i) => (
+              <LastRunStopRow
+                key={stop.stop}
+                stop={stop}
+                isCurrent={i === lastRun.currentStopIndex}
+                isUpcoming={i > lastRun.currentStopIndex}
+                routeColor={route.color}
+              />
+            ))}
+          </div>
         ) : (
           <div className="border-t border-border/30 px-4 py-3">
             <span className="text-xs text-muted-foreground/60">
-              {!serviceRunning
-                ? t('no_service')
-                : !hasUpcoming
-                  ? t('service_ended')
-                  : t('no_service')}
+              {!serviceRunning ? t('no_service') : t('service_ended')}
             </span>
           </div>
         )}

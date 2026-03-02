@@ -280,19 +280,95 @@ export function getStopSurroundingTimes(
 
 /**
  * Get the direction with the soonest upcoming departure.
+ * Also considers directions with an in-transit last run.
  * Falls back to directions[0].
  */
 export function getActiveDirection(
   route: Route,
   date: Date = new Date(),
 ): { direction: Direction; directionIndex: number } {
+  // First: direction with upcoming scheduled departures
   for (let i = 0; i < route.directions.length; i++) {
     const context = getStopSurroundingTimes(route.directions[i], date);
     if (context && context.some((s) => s.nextDeparture !== null)) {
       return { direction: route.directions[i], directionIndex: i };
     }
   }
+  // Second: direction with a last run still in transit
+  for (let i = 0; i < route.directions.length; i++) {
+    const lastRun = getLastRunStatus(route.directions[i], date);
+    if (lastRun) {
+      return { direction: route.directions[i], directionIndex: i };
+    }
+  }
   return { direction: route.directions[0], directionIndex: 0 };
+}
+
+export interface LastRunStop {
+  stop: string;
+  time: string;
+  minutes: number;
+  isPast: boolean;
+}
+
+export interface LastRunInfo {
+  isInTransit: boolean;
+  currentStopIndex: number;
+  stops: LastRunStop[];
+}
+
+/**
+ * Detect if the final run of the day is still in transit.
+ * Compares current time against the last scheduled departure at each stop.
+ * Returns info about the bus position, or null if no run is active.
+ */
+export function getLastRunStatus(
+  direction: Direction,
+  date: Date = new Date(),
+): LastRunInfo | null {
+  if (!isServiceRunning(date)) return null;
+
+  const serviceType = getServiceType(date);
+  const scheduleTimes = getScheduleForServiceType(direction, serviceType);
+  if (!scheduleTimes || scheduleTimes.length === 0) return null;
+
+  const nowMinutes = date.getHours() * 60 + date.getMinutes();
+
+  // Extract the last valid time from each stop (= the final run)
+  const lastRunStops: LastRunStop[] = [];
+  for (const st of scheduleTimes) {
+    const validTimes = st.times.filter((t) => !isNaN(parseTime(t)));
+    const lastTime = validTimes[validTimes.length - 1];
+    if (!lastTime) continue;
+    const mins = parseTime(lastTime);
+    lastRunStops.push({
+      stop: st.stop,
+      time: lastTime,
+      minutes: mins,
+      isPast: mins <= nowMinutes,
+    });
+  }
+
+  if (lastRunStops.length < 2) return null;
+
+  const firstDeparture = lastRunStops[0].minutes;
+  const lastArrival = lastRunStops[lastRunStops.length - 1].minutes;
+  // Buffer: allow 10 minutes past the last stop for the bus to finish
+  const buffer = 10;
+
+  if (nowMinutes < firstDeparture || nowMinutes > lastArrival + buffer) {
+    return null;
+  }
+
+  // Find the stop the bus just passed (last stop with time <= now)
+  let currentStopIndex = 0;
+  for (let i = 0; i < lastRunStops.length; i++) {
+    if (lastRunStops[i].minutes <= nowMinutes) {
+      currentStopIndex = i;
+    }
+  }
+
+  return { isInTransit: true, currentStopIndex, stops: lastRunStops };
 }
 
 /**
