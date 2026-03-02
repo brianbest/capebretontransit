@@ -30,6 +30,17 @@ export function formatTime(time: string): string {
 }
 
 /**
+ * Format a duration in minutes for compact display (e.g. "28m", "1h 15m").
+ */
+export function formatMinutes(mins: number): string {
+  if (mins < 1) return "<1m";
+  if (mins < 60) return `${mins}m`;
+  const h = Math.floor(mins / 60);
+  const m = mins % 60;
+  return m > 0 ? `${h}h ${m}m` : `${h}h`;
+}
+
+/**
  * Format a date to an ISO date string (YYYY-MM-DD) in local timezone.
  */
 function toLocalDateString(date: Date): string {
@@ -278,30 +289,38 @@ export function getStopSurroundingTimes(
   });
 }
 
+export interface ActiveDirectionResult {
+  direction: Direction;
+  directionIndex: number;
+  stopTimes: StopTimeContext[] | null;
+  lastRun: LastRunInfo | null;
+}
+
 /**
  * Get the direction with the soonest upcoming departure.
  * Also considers directions with an in-transit last run.
+ * Returns pre-computed stopTimes and lastRun to avoid duplicate work.
  * Falls back to directions[0].
  */
 export function getActiveDirection(
   route: Route,
   date: Date = new Date(),
-): { direction: Direction; directionIndex: number } {
+): ActiveDirectionResult {
   // First: direction with upcoming scheduled departures
   for (let i = 0; i < route.directions.length; i++) {
-    const context = getStopSurroundingTimes(route.directions[i], date);
-    if (context && context.some((s) => s.nextDeparture !== null)) {
-      return { direction: route.directions[i], directionIndex: i };
+    const stopTimes = getStopSurroundingTimes(route.directions[i], date);
+    if (stopTimes && stopTimes.some((s) => s.nextDeparture !== null)) {
+      return { direction: route.directions[i], directionIndex: i, stopTimes, lastRun: null };
     }
   }
   // Second: direction with a last run still in transit
   for (let i = 0; i < route.directions.length; i++) {
     const lastRun = getLastRunStatus(route.directions[i], date);
     if (lastRun) {
-      return { direction: route.directions[i], directionIndex: i };
+      return { direction: route.directions[i], directionIndex: i, stopTimes: null, lastRun };
     }
   }
-  return { direction: route.directions[0], directionIndex: 0 };
+  return { direction: route.directions[0], directionIndex: 0, stopTimes: null, lastRun: null };
 }
 
 export interface LastRunStop {
@@ -312,7 +331,6 @@ export interface LastRunStop {
 }
 
 export interface LastRunInfo {
-  isInTransit: boolean;
   currentStopIndex: number;
   stops: LastRunStop[];
 }
@@ -337,10 +355,17 @@ export function getLastRunStatus(
   // Extract the last valid time from each stop (= the final run)
   const lastRunStops: LastRunStop[] = [];
   for (const st of scheduleTimes) {
-    const validTimes = st.times.filter((t) => !isNaN(parseTime(t)));
-    const lastTime = validTimes[validTimes.length - 1];
-    if (!lastTime) continue;
-    const mins = parseTime(lastTime);
+    // Walk backwards to find the last valid time without filtering the whole array
+    let lastTime: string | null = null;
+    let mins = NaN;
+    for (let i = st.times.length - 1; i >= 0; i--) {
+      mins = parseTime(st.times[i]);
+      if (!isNaN(mins)) {
+        lastTime = st.times[i];
+        break;
+      }
+    }
+    if (!lastTime || isNaN(mins)) continue;
     lastRunStops.push({
       stop: st.stop,
       time: lastTime,
@@ -368,7 +393,7 @@ export function getLastRunStatus(
     }
   }
 
-  return { isInTransit: true, currentStopIndex, stops: lastRunStops };
+  return { currentStopIndex, stops: lastRunStops };
 }
 
 /**

@@ -7,12 +7,11 @@ import {Card} from '@/components/ui/card';
 import {ChevronRight, ChevronDown, ChevronUp} from 'lucide-react';
 import {type Route} from '@/data/routes';
 import {
-  getStopSurroundingTimes,
   getActiveDirection,
-  getLastRunStatus,
   getServiceType,
   isServiceRunning,
   formatTime,
+  formatMinutes,
   type StopTimeContext,
   type LastRunStop,
 } from '@/lib/schedule-utils';
@@ -22,14 +21,6 @@ interface RouteWidgetProps {
 }
 
 const INITIAL_STOPS = 3;
-
-function formatMinutes(mins: number): string {
-  if (mins < 1) return '<1m';
-  if (mins < 60) return `${mins}m`;
-  const h = Math.floor(mins / 60);
-  const m = mins % 60;
-  return m > 0 ? `${h}h ${m}m` : `${h}h`;
-}
 
 function StopRow({ctx, isFirst}: {ctx: StopTimeContext; isFirst: boolean}) {
   return (
@@ -119,10 +110,8 @@ export function RouteWidget({route}: RouteWidgetProps) {
   const now = new Date();
   const serviceRunning = isServiceRunning(now);
   const serviceType = getServiceType(now);
-  const {direction} = getActiveDirection(route, now);
-  const stopTimes = serviceRunning ? getStopSurroundingTimes(direction, now) : null;
+  const {direction, stopTimes, lastRun} = getActiveDirection(route, now);
   const hasUpcoming = stopTimes?.some((s) => s.nextDeparture !== null) ?? false;
-  const lastRun = !hasUpcoming && serviceRunning ? getLastRunStatus(direction, now) : null;
 
   const firstStop = direction.stops[0]?.name;
   const lastStop = direction.stops[direction.stops.length - 1]?.name;
@@ -140,7 +129,7 @@ export function RouteWidget({route}: RouteWidgetProps) {
 
   return (
     <Link href={`/routes/${route.id}`}>
-      <Card className="group gap-0 border-border/50 py-0 transition-colors hover:border-primary/30 hover:bg-card/80">
+      <Card className="group mb-6 gap-0 border-border/50 py-0 transition-colors hover:border-primary/30 hover:bg-card/80">
         {/* Header */}
         <div className="flex items-center gap-3 px-4 pt-3.5 pb-2">
           <div
