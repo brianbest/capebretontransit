@@ -35,7 +35,12 @@
     "first_departure": "Premier départ",
     "last_departure": "Dernier départ",
     "travel_time": "Durée du trajet",
-    "minutes": "{count} min"
+    "minutes": "{count} min",
+    "last": "Dernier",
+    "next_arrival": "Prochain",
+    "service_ended": "Service terminé pour aujourd'hui",
+    "more_stops": "+{count} arrêts",
+    "fewer_stops": "Voir moins"
   },
   "common": {
     "loading": "Chargement...",

@@ -227,6 +227,74 @@ export function getUpcomingDeparturesFromStop(
   return results.slice(0, limit).map(({ route, direction, time }) => ({ route, direction, time }));
 }
 
+export interface StopTimeContext {
+  stop: string;
+  lastDeparture: string | null;
+  nextDeparture: string | null;
+  minutesUntilNext: number | null;
+}
+
+/**
+ * For each stop in a direction's schedule, find the most recent past departure
+ * and the next upcoming departure relative to the given date/time.
+ */
+export function getStopSurroundingTimes(
+  direction: Direction,
+  date: Date = new Date(),
+): StopTimeContext[] | null {
+  if (!isServiceRunning(date)) {
+    return null;
+  }
+
+  const serviceType = getServiceType(date);
+  const scheduleTimes = getScheduleForServiceType(direction, serviceType);
+
+  if (!scheduleTimes || scheduleTimes.length === 0) {
+    return null;
+  }
+
+  const nowMinutes = date.getHours() * 60 + date.getMinutes();
+
+  return scheduleTimes.map((st) => {
+    let lastDeparture: string | null = null;
+    let nextDeparture: string | null = null;
+
+    for (const time of st.times) {
+      const mins = parseTime(time);
+      if (isNaN(mins)) continue;
+
+      if (mins <= nowMinutes) {
+        lastDeparture = time;
+      } else if (nextDeparture === null) {
+        nextDeparture = time;
+      }
+    }
+
+    const minutesUntilNext = nextDeparture
+      ? parseTime(nextDeparture) - nowMinutes
+      : null;
+
+    return { stop: st.stop, lastDeparture, nextDeparture, minutesUntilNext };
+  });
+}
+
+/**
+ * Get the direction with the soonest upcoming departure.
+ * Falls back to directions[0].
+ */
+export function getActiveDirection(
+  route: Route,
+  date: Date = new Date(),
+): { direction: Direction; directionIndex: number } {
+  for (let i = 0; i < route.directions.length; i++) {
+    const context = getStopSurroundingTimes(route.directions[i], date);
+    if (context && context.some((s) => s.nextDeparture !== null)) {
+      return { direction: route.directions[i], directionIndex: i };
+    }
+  }
+  return { direction: route.directions[0], directionIndex: 0 };
+}
+
 /**
  * Get all routes that serve a given stop.
  */

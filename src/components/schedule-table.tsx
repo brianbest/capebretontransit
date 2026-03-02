@@ -5,6 +5,7 @@ import {Tabs, TabsList, TabsTrigger, TabsContent} from '@/components/ui/tabs';
 import {type Direction} from '@/data/routes';
 import {
   getScheduleForServiceType,
+  getServiceType,
   formatTime,
   parseTime,
   type ServiceType,
@@ -95,7 +96,7 @@ export function ScheduleTable({direction}: ScheduleTableProps) {
   const t = useTranslations('route');
 
   return (
-    <Tabs defaultValue="weekday" className="w-full">
+    <Tabs defaultValue={getServiceType(new Date())} className="w-full">
       <TabsList className="w-full">
         <TabsTrigger value="weekday" className="flex-1">
           {t('weekday')}

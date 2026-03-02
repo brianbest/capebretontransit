@@ -1,6 +1,6 @@
 import {useTranslations} from 'next-intl';
 import {routes} from '@/data/routes';
-import {RouteCard} from '@/components/route-card';
+import {RouteWidget} from '@/components/route-widget';
 import {ServiceAlert} from '@/components/service-alert';
 
 export default function Home() {
@@ -19,9 +19,9 @@ export default function Home() {
 
       <ServiceAlert />
 
-      <div className="mt-4 space-y-3">
+      <div className="mt-4 space-y-4">
         {routes.map((route) => (
-          <RouteCard key={route.id} route={route} />
+          <RouteWidget key={route.id} route={route} />
         ))}
       </div>
     </div>

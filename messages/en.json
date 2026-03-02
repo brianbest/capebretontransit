@@ -35,7 +35,12 @@
     "first_departure": "First Departure",
     "last_departure": "Last Departure",
     "travel_time": "Travel Time",
-    "minutes": "{count} min"
+    "minutes": "{count} min",
+    "last": "Last",
+    "next_arrival": "Next",
+    "service_ended": "Service ended for today",
+    "more_stops": "+{count} more stops",
+    "fewer_stops": "Show fewer"
   },
   "common": {
     "loading": "Loading...",

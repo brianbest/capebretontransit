@@ -36,7 +36,12 @@
     "first_departure": "Nekmewey Pekisinl",
     "last_departure": "Kespi'skw Pekisinl",
     "travel_time": "Paqtnkek Tepknatl",
-    "minutes": "{count} tepknuset"
+    "minutes": "{count} tepknuset",
+    "last": "Kespi'skw",
+    "next_arrival": "Ap Pekisinl",
+    "service_ended": "Paqtnkek kisi-keskuk",
+    "more_stops": "+{count} kaqamitl",
+    "fewer_stops": "Ankaptmn newtiskl"
   },
   "common": {
     "loading": "Etliwisqtmk...",

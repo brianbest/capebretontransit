@@ -35,7 +35,12 @@
     "first_departure": "首班车",
     "last_departure": "末班车",
     "travel_time": "行程时间",
-    "minutes": "{count} 分钟"
+    "minutes": "{count} 分钟",
+    "last": "上一班",
+    "next_arrival": "下一班",
+    "service_ended": "今日服务已结束",
+    "more_stops": "还有{count}个站点",
+    "fewer_stops": "收起"
   },
   "common": {
     "loading": "加载中...",

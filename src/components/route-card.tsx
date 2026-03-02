@@ -20,7 +20,7 @@ export function RouteCard({route}: RouteCardProps) {
 
   return (
     <Link href={`/routes/${route.id}`}>
-      <Card className="group gap-0 border-border/50 py-0 transition-colors hover:border-primary/30 hover:bg-card/80">
+      <Card className="group mb-4 gap-0 border-border/50 py-0 transition-colors hover:border-primary/30 hover:bg-card/80">
         <div className="flex items-center gap-3.5 px-4 py-4">
           <div
             className="flex size-10 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
