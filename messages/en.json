@@ -64,6 +64,7 @@
     "powered_by": "Powered by open transit data",
     "data_source": "Data source: Cape Breton Regional Municipality",
     "last_updated": "Last updated: {date}",
+    "about": "Built by Brian Best. For support, contact me on <link>Bluesky</link>.",
     "copyright": "Cape Breton Transit",
     "accessibility_statement": "Accessibility Statement",
     "contact": "Contact Us"

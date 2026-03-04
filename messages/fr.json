@@ -64,6 +64,7 @@
     "powered_by": "Propulsé par des données ouvertes de transport",
     "data_source": "Source des données : Municipalité régionale du Cap-Breton",
     "last_updated": "Dernière mise à jour : {date}",
+    "about": "Créé par Brian Best. Pour obtenir de l'aide, contactez-moi sur <link>Bluesky</link>.",
     "copyright": "Transport en commun du Cap-Breton",
     "accessibility_statement": "Déclaration d'accessibilité",
     "contact": "Nous joindre"

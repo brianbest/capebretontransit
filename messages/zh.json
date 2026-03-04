@@ -64,6 +64,7 @@
     "powered_by": "基于开放交通数据",
     "data_source": "数据来源：布雷顿角区域市政",
     "last_updated": "最后更新：{date}",
+    "about": "由 Brian Best 构建。如需支持，请在 <link>Bluesky</link> 上联系我。",
     "copyright": "布雷顿角公共交通",
     "accessibility_statement": "无障碍声明",
     "contact": "联系我们"
